@@ -12,6 +12,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Roboto+Mono:ital,wght@0,100;0,200;1,100&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <style>
     *{
@@ -20,7 +25,7 @@
     box-sizing: border-box;
 }
 body{
-    background-color: #dcb1b1;
+    background-image: linear-gradient( 111.6deg,  rgba(174,68,223,1) 27.3%, rgba(246,135,135,1) 112.7% );
     position: relative;;
 }
 
@@ -56,8 +61,17 @@ body{
     
 }
 .small{
-    font-family: 'Dancing Script', cursive;
-    font-family: 'Roboto Mono', monospace;
+    line-height:1.5;
+    margin:auto;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin-top:150px;
+    font-size:90px;
+    font-weight: 5000px;
+    color:#ffffff;
+    display:flex;
+    font-family: "Poppins", sans-serif;
 
 }
 .btn{
@@ -114,10 +128,10 @@ blog-section2{
     
 }
 .logo{
-    position:absolute;
+    float:left;
     color:white;
-    transform: translateX(-1150px);
-    margin-top:15px;
+    margin-top:13px;
+    margin-left:15px;
     font-family: 'Kaushan Script', cursive;}
 
   .topnav {
@@ -125,7 +139,7 @@ blog-section2{
 background-image:linear-gradient(to bottom, rgb(95,25,76),rgb(47, 8, 63));
 /*background-image:linear-gradient(rgba(45, 7, 72, 0.724),rgb(47, 8, 63));*/
 position:relative;
-display:flex;
+display:inline-block;
 margin-left:0;
 margin-top:0;
 width:100%;
@@ -150,16 +164,20 @@ color: black;
 background-color: #5404aa86;
 color: white;
 }
+.nav-right{
+    float:right;
+}
 </style>
 </head>
 <body>
     <div class="topnav">
         <div class="logo">PRIDEMΛTCH</div>
+        <div class="nav-right">
         <a href="index.php">Home</a>
         <a href="http://localhost:3000/">Community Discussion</a>
         <a href="#contact">Contact Us</a>
         <a href="profile.php">Profile</a>
-        <a href="logout.php">Logout</a>
+        <a href="logout.php">Logout</a></div>
       </div>
     <header class="head">
         <div class="content">
