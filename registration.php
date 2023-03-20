@@ -18,7 +18,7 @@ if(isset($_POST["submit"])){
   $duplicate = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$username' OR email = '$email'");
   if(mysqli_num_rows($duplicate) > 0){
     echo
-    "<script> alert('Username or Email Has Already Taken'); </script>";
+    "<script> alert('Username or Email Is Already Taken'); </script>";
   }
   else{
     if($password == $confirmpassword){

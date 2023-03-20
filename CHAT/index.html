@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500&family=Poppins&family=Source+Serif+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <main>
+        <header>
+            <div class="title">
+            
+                <h1>COMMUNITY DISCUSSION</h1>
+            </div>
+            
+        </header>
+        <div class="container">
+            <div class="users-window">
+                <div class="users-head">
+                    <h3>People</h3>
+                    <h4 class="users-count">0</h4>
+                </div>
+                <div class="user-lists">
+                </div>
+            </div>
+            <div class="chat-window">
+                <div class="chats">
+                    <div class="user-join">    
+                    </div>
+                    <div class="message-incoming">    
+                    </div>
+                    <div class="message-outgoing">
+                    </div>
+                </div>
+                <div class="user-input">
+                    <input id ="user-msg" type="text" placeholder="Type Your Message...">
+                    <button type ="button" id="user-send" >SEND</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        var uwindow=document.querySelector('.users-window')
+        function show_hide(){
+            if(uwindow.style.display=="block"){
+                uwindow.style.display="none";
+            }
+            else{
+                uwindow.style.display="block";
+            }
+        }
+    </script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/client.js"></script>
+    
+</body>
+</html>

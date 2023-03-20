@@ -257,6 +257,13 @@ if(!empty($_SESSION["id"])){
     margin-top:15px;
     font-family: 'Kaushan Script', cursive;
   }
+  .connect{
+    margin-top:20px;
+    text-align:center;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+  }
   
     </style>
   </head>
@@ -379,9 +386,18 @@ if(!empty($_SESSION["id"])){
     let des = document.createElement("h5");
     des.innerText = "ABOUT ME: "+i[1].des;
     container.appendChild(des);
+
+    let con = document.createElement("a");
+    con.setAttribute('href','http://localhost:3000/');
+    con.classList.add("connect");
+    con.innerText = "CONNECT";
+    container.appendChild(con);
+
   
     card.appendChild(container);
     document.getElementById("persons").appendChild(card);
+
+
   }
   
   //parameter passed from button (Parameter same as category)
