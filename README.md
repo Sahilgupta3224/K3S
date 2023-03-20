@@ -12,9 +12,10 @@ Our website includes the following features:
 * Login/Signup page: Users can create an account or log in to an existing account.
 * User profile pages: Users can create a profile with information about themselves-their biodata and their interests.
 * Other users' profile: Users can view other registered users' profiles to find potential matches.
-* Chat feature: Users can start a chat conversation with someone they are interested in by clicking on the chat icon on their profile page. They can also participate in open discussions with other members of their community.
+* Chat feature: Users can start a chat conversation with someone they are interested in by clicking on the chat icon on their profile page. 
 * Blogs: Users can remain updated with the latest events happening with respect to lgbtq+ community.
 * Filtering feature: Users can filter other users based on their gender and location, to find potential matches that meet their preferences.
+* Community Chat: Users can discuss about their daily lives,their interests and their problems with other users belonging to their community.
 
 ### Contributing
 We welcome contributions from anyone who would like to improve our website. To contribute, follow these steps:
