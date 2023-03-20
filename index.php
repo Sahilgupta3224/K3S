@@ -1,14 +1,14 @@
 <?php
 require 'config.php';
+  $result = mysqli_query($conn, "SELECT * FROM user");
+  $datarr = array();
+    while($row =mysqli_fetch_assoc($result))
+    {
+        $datarr[] = $row;
+    }
 if(!empty($_SESSION["id"])){
   $id = $_SESSION["id"];
-  $result = mysqli_query($conn, "SELECT * FROM user WHERE id = $id");
-  $row = mysqli_fetch_assoc($result);
 }
-else{
-  header("Location: login.php");
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,10 @@ else{
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <!-- Stylesheet -->
+
     <style>
       html{
     height:100%;
@@ -156,7 +159,7 @@ else{
     background-color: #6759ff;
     color: #ffffff;
   }
-  #products {
+  #persons {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-column-gap: 1.5em;
@@ -217,7 +220,7 @@ else{
       margin-top: 1em;
       display: inline-block;
     }
-    #products {
+    #persons {
       grid-template-columns: auto auto;
       grid-column-gap: 1em;
       
@@ -247,6 +250,13 @@ else{
     
     display: flex;
   }
+  .logo{
+    position:absolute;
+    color:white;
+    transform: translateX(-1150px);
+    margin-top:15px;
+    font-family: 'Kaushan Script', cursive;
+  }
   
     </style>
   </head>
@@ -254,8 +264,11 @@ else{
     <div class="wrapper">
       
 <div class="topnav">
+<div class="logo">PRIDEMΛTCH</div>
+
   <a class="active" href="#home">Home</a>
-  <a href="#news">News</a>
+  <a href="http://localhost:3000/">Community Discussion</a>
+  <a href="profile.php#contact">Contact Us</a>
   <a href="profile.php">Profile</a>
   <a href="logout.php">Logout</a>
 </div>
@@ -273,146 +286,106 @@ else{
         <button id="search">Search</button>
       </div>
       <div id="buttons">
-        <button class="button-value" onclick="filterProduct('all')">All</button>
-        <button class="button-value" onclick="filterProduct('gay')">
+        <button class="button-value" onclick="filterPerson('all')">All</button>
+        <button class="button-value" onclick="filterPerson('gay')">
           gay
         </button>
-        <button class="button-value" onclick="filterProduct('lesbian')">
+        <button class="button-value" onclick="filterPerson('lesbian')">
           lesbian
         </button>
-        <button class="button-value" onclick="filterProduct('bisexual')">
-          bisexual
+        <button class="button-value" onclick="filterPerson('bisexual(woman)')">
+          bisexual(woman)
         </button>
-        <button class="button-value" onclick="filterProduct('transman')">
+        <button class="button-value" onclick="filterPerson('bisexual(man)')">
+        bisexual(man)
+        <button class="button-value" onclick="filterPerson('transman')">
           transman
         </button>
-        <button class="button-value" onclick="filterProduct('transwoman')">
+        <button class="button-value" onclick="filterPerson('transwoman')">
         transwoman
         </button>
-        <button class="button-value" onclick="filterProduct('asexual')">
+        <button class="button-value" onclick="filterPerson('asexual')">
             asexual
           </button>
       </div>
       <div id="ppl">
-      <div id="products"></div>
+      <div id="persons"></div>
       
       
       </div>
     </div>
-    <!-- Script -->
-    <script>
-      let products = {
-    data: [
-      {
-        productName: "Rajasthan",
-        category: "gay",
-        price: "20",
-        image: "image1.jpg",
-        personName: "Sahaj shrivastav",
-        gender:"gay"
-      },
-      {
-        productName: "Uttar Pradesh",
-        category: "lesbian",
-        price: "25",
-        image: "lesbian25.jpeg",
-        personName: "Richa Singh",
-        gender:"lesbian"
-      },
-      {
-        productName: "odisha",
-        category: "bisexual",
-        price: "24",
-        image: "trans.jpg",
-        personName: "Anuroop trivedi",
-        gender:"bisexual"
-      },
-      {
-        productName: "karnataka",
-        category: "transman",
-        price: "31",
-        image: "gay.jpg",
-        personName: "Raman ",
-        gender:"transman"
-      },
-      {
-        productName: "gujarat",
-        category: "bisexual",
-        price: "22",
-        image: "girl.jpeg",
-        personName: "Preeti Goyal",
-        gender:"bisexual"
-      },
-      {
-        productName: "Bihar",
-        category: "transwoman",
-        price: "23",
-        image: "transwoman23.webp",
-        personName: "Priya",
-        gender:"transwoman"
-      },
-      {
-        productName: "Maharashtra",
-        category: "asexual",
-        price: "27",
-        image: "transman.jpeg",
-        personName: "Kirti Bansal",
-        gender:"asexual"
-      },
-      {
-        productName: "Odisha",
-        category: "lesbian",
-        price: "29",
-        image: "trans2.jpeg",
-        personName: "Iti Mohan",
-        gender:"lesbian"
+ 
 
-      },
-    ],
-  };
   
-  for (let i of products.data) {
+   
+   
+   <script type="text/javascript">
+    
+  let parsedJson = <?php echo json_encode($datarr);?>;
+  console.log(typeof(parsedJson));
+
+  
+  for (let i of Object.entries(parsedJson)){
+    console.log(i[1]);
+    /*if (i[1].id === <?php $id;?>) 
+    continue;*/
     //Create Card
     let card = document.createElement("div");
     //Card should have category and should stay hidden initially
-    card.classList.add("card", i.category, "hide");
+    card.classList.add("card",i[1].gender,"hide");
     //image div
-    let imgContainer = document.createElement("div");
+    /*let imgContainer = document.createElement("div");
     imgContainer.classList.add("image-container");
     //img tag
     let image = document.createElement("img");
     image.setAttribute("src", i.image);
     imgContainer.appendChild(image);
-    card.appendChild(imgContainer);
-    //container
+    card.appendChild(imgContainer);*/
     let container = document.createElement("div");
     container.classList.add("container");
-    //product name
     let user = document.createElement("h5");
-    user.innerText = "NAME: "+i.personName;
+    user.innerText = "NAME: "+i[1].name;
     container.appendChild(user);
 
-    let name = document.createElement("h5");
-    name.classList.add("product-name");
-    name.innerText = "STATE: "+i.productName.toUpperCase();
-    container.appendChild(name);
+    let location = document.createElement("h5");
+    location.classList.add("state-name");
+    location.innerText = "STATE: "+i[1].state.toUpperCase() ;
+    container.appendChild(location);
     //age
-    let price = document.createElement("h5");
-    price.innerText ="AGE: "+ i.price;
-    container.appendChild(price);
-    //personName
+    let text = i[1].dob;
+    let year = Number(text.substring(0, 4));
+    let age = 2023-year;
+    let agetext = age.toString();
+
+
+    let agethb = document.createElement("h5");
+    agethb.innerText ="AGE: "+ agetext;
+    container.appendChild(agethb);
+        //personName
     
     //gender
     let gender = document.createElement("h5");
-    gender.innerText = "GENDER: "+i.gender;
+    gender.innerText = "GENDER: "+i[1].gender;
     container.appendChild(gender);
+
+    let occ = document.createElement("h5");
+    occ.innerText = "OCCUPATION: "+i[1].occ;
+    container.appendChild(occ);
+
+    let rel = document.createElement("h5");
+    rel.innerText = "RELIGION: "+i[1].rel;
+    container.appendChild(rel);
+
+    let des = document.createElement("h5");
+    des.innerText = "ABOUT ME: "+i[1].des;
+    container.appendChild(des);
   
     card.appendChild(container);
-    document.getElementById("products").appendChild(card);
+    document.getElementById("persons").appendChild(card);
   }
   
   //parameter passed from button (Parameter same as category)
-  function filterProduct(value) {
+  function filterPerson(value) {
     //Button class code
     let buttons = document.querySelectorAll(".button-value");
     buttons.forEach((button) => {
@@ -428,7 +401,7 @@ else{
     let elements = document.querySelectorAll(".card");
     //loop through all cards
     elements.forEach((element) => {
-      //display all cards on 'all' button click
+      //display all cards on all button click
       if (value == "all") {
         element.classList.remove("hide");
       } else {
@@ -448,7 +421,7 @@ else{
   document.getElementById("search").addEventListener("click", () => {
     //initializations
     let searchInput = document.getElementById("search-input").value;
-    let elements = document.querySelectorAll(".product-name");
+    let elements = document.querySelectorAll(".state-name");
     let cards = document.querySelectorAll(".card");
   
     //loop through all elements
@@ -466,9 +439,13 @@ else{
   
   //Initially display all products
   window.onload = () => {
-    filterProduct("all");
-  };
+    filterPerson("all");
+  }; 
+
   
   </script>
-  </body>
+</body>
 </html>
+ 
+
+   
